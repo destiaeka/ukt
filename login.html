@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Dashboard UKT</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif, 'Poppins';
+            background-color: #f0f2f5;
+            background-image: url('summer-anime-girl-cat-4k-wallpaper-uhdpaper.com-414@5@d.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .login-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+            max-width: 90%;
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px;
+            color: #333333;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: #dc3545; /* Merah */
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: none; /* Sembunyikan secara default */
+        }
+
+
+        .dashboard-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            display: none;
+        }
+        body.dashboard-active {
+             background-image: none;
+             background-color: #f8f9fa;
+             display: block;
+        }
+
+        .dashboard-content h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .dashboard-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dashboard-content ul li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .dashboard-content .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .dashboard-content .btn-logout:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginSection">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                </div>
+                <p id="errorMessage" class="error-message"></p>
+                <button type="submit" class="login-button">Login</button>
+            
+            </form>
+        </div>
+    </div>
+
+    <div class="dashboard-content" id="dashboardSection">
+        <h1>Selamat Datang, Admin!</h1>
+        <p>Anda berhasil masuk ke halaman dashboard. Di sini Anda aaaaaaaaaa</p>
+
+        <h2>hmm masih bingung gwa</h2>
+        
+        <a href="#" class="btn-logout" id="logoutButton">Logout</a>
+    </div>
+
+    <script>
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const loginForm = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('errorMessage');
+        const logoutButton = document.getElementById('logoutButton');
+
+
+        function showLoginPage() {
+            loginSection.style.display = 'flex';
+            dashboardSection.style.display = 'none';
+            document.body.classList.remove('dashboard-active');
+            errorMessage.style.display = 'none';
+            usernameInput.value = '';
+            passwordInput.value = '';
+        }
+
+
+        function showDashboardPage() {
+            loginSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+            document.body.classList.add('dashboard-active');
+        }
+
+
+    
+        showLoginPage();
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (username === 'admin' && password === 'admin') {
+                window.location.href = "index.html"; // Ganti dengan file tujuan kamu
+            } else {
+                errorMessage.textContent = 'Username atau Password salah!';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        logoutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            showLoginPage();
+        });
+    </script>
+</body>
+</html>
